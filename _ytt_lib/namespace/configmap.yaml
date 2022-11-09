@@ -7,4 +7,4 @@ metadata:
   name: data-values-configmap
 type: Opaque
 data:
-  content: #@ yaml.encode(data)
+  content: #@ yaml.encode(data.values)
