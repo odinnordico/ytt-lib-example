@@ -1,0 +1,19 @@
+#! from https://github.com/xtreme-conor-nosal/tap-ns-resources/blob/main/grype-airgap/grype-airgap.lib.yaml
+
+#@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),when="
+---
+spec:
+  template:
+    initContainers:
+      #@overlay/match by=overlay.subset({"name": "scan-plugin"}), expects="1+"
+      - name: scan-plugin
+        #@overlay/match missing_ok=True
+        env:
+          #@overlay/append
+          - name: GRYPE_CHECK_FOR_APP_UPDATE
+            value: "false"
+          #@overlay/append
+          - name: GRYPE_DB_MAX_ALLOWED_BUILT_AGE #! see note on best practices
+            value: "120h"
+
+#@ end
