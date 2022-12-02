@@ -1,5 +1,8 @@
 #! from https://github.com/xtreme-conor-nosal/tap-ns-resources/blob/main/grype-airgap/grype-airgap.lib.yaml
 
+#@ load("@ytt:overlay", "overlay")
+#@ def customize():
+
 #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),when=1
 ---
 spec:
